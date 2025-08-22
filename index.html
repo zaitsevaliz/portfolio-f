@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотопортфолио</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            /* padding-top: 70px; */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: #666;
+        }
+
+        /* Герой секция */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                        url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Портфолио */
+        .portfolio {
+            padding: 5rem 0 0 0;
+            background: #fafafa;
+        }
+
+        .portfolio h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #333;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 20px;
+        }
+
+        /* Шаблон для фотографий 4:5 */
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            aspect-ratio: 4/5;
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover .photo-img {
+            transform: scale(1.1);
+        }
+
+        /* Обо мне */
+        .about {
+            padding: 5rem 0;
+            background: #fff;
+        }
+
+        .about h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* Контакты */
+        .contact {
+            padding: 5rem 0;
+            background: #fafafa;
+        }
+
+        .contact h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        /* Футер */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 20px;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .portfolio h2,
+            .about h2,
+            .contact h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Плавная прокрутка */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">ФОТОГРАФ</div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Главная</a>
+                <a href="#portfolio" class="nav-link">Портфолио</a>
+                <a href="#contact" class="nav-link">Контакты</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Искусство в каждом кадре</h1>
+            <p>Профессиональная фотосъемка для ваших особенных моментов</p>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Портфолио</h2>
+            <div class="portfolio-grid">
+                <!-- Фотографии с соотношением 4:5 -->
+                <div class="photo-card">
+                    <img src="1.jpg" alt="Фотография 1" class="photo-img">
+                </div>
+
+                <div class="photo-card">
+                    <img src="2.jpg" alt="Фотография 2" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="3.jpg" alt="Фотография 3" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="4.jpg" alt="Фотография 4" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="5.jpg" alt="Фотография 5" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="6.jpg" alt="Фотография 6" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="7.jpg" alt="Фотография 7" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="8.jpg" alt="Фотография 8" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="9.jpg" alt="Фотография 9" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="10.jpg" alt="Фотография 10" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="11.jpg" alt="Фотография 11" class="photo-img">
+                </div>
+                
+                <div class="photo-card">
+                    <img src="12.jpg" alt="Фотография 12" class="photo-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Контакты</h2>
+            <div class="contact-info">
+                <p>📞 +7 (985) 772-09-14</p>
+                <p>📍 Москва, Россия</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Фотопортфолио.</p>
+    </footer>
+</body>
+</html>
